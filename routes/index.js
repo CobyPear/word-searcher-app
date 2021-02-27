@@ -1,6 +1,7 @@
 import express from 'express'
 const router = express.Router()
 import { addUser, getAllUsers, searchWord } from '../controllers/index.js'
+import  protect from '../middleware/authMiddleware.js'
 
 // POST /api/user
 // take a user name and add it to the database
@@ -18,7 +19,7 @@ router.route('/user')
 // if they do, proxy an api call to WordAPI 
 // Otherwise, we'll tell them to login please.
 router.route('/word')
-    .get(searchWord)
+    .get(protect, searchWord)
 
 
 
