@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import User from "./models"
+import User from "./models/index.js"
 
 
 mongoose.connect("mongodb://localhost/worddb", {
