@@ -25,15 +25,25 @@ const API = {
             return json
         } catch (error) {
             console.log(error)
-            
+
         }
     },
-    authSearchWord: async function(word) {
+    authSearchWord: async function(word, token) {
         console.log(word)
         try {
-            const res = await fetch('/api/word')
-        } catch (error) {
+            const res = await fetch('/api/word', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(word)
+            })
+            const json = await res.json()
             
+            return json
+        } catch (error) {
+            console.log(error)
         }
     }
 }

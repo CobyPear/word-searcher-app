@@ -37,8 +37,12 @@ const addUser = async (e) => {
     }
 }
 
-const searchWord = async (word) => {
-
+const searchWord = async (e) => {
+    e.preventDefault()
+    const token = sessionStorage.getItem('token')
+    const word = wordInput.value
+    const response = await API.authSearchWord({ word: word }, token)
+    console.log(response)
 }
 
 
@@ -46,4 +50,4 @@ window.addEventListener('load', displayAllUsers)
 
 submitUserBtn.addEventListener('click', addUser)
 
-// submitWordBtn.addEventListener('click', searchWord)
+submitWordBtn.addEventListener('click', searchWord)
