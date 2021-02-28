@@ -1,5 +1,6 @@
 import User from '../models/index.js'
 import generateToken from '../utils/generateToken.js'
+import axios from 'axios'
 
 // POST /api/user
 const addUser = async (req, res) => {
@@ -28,16 +29,49 @@ const addUser = async (req, res) => {
 }
 
 //GET /api/user
-const getAllUsers = (req, res) => {
+const getAllUsers = async (req, res) => {
     // get all users and associated words to display
-    res.json('hello')
+    try {
+        const allUsers = await User.find({})
+    
+        if (allUsers) {
+            res.status(200).json(allUsers)
+        }
+    } catch (error) {
+        res.status(400).json(error)
+    }
 }
 
 // GET /api/word
-const searchWord = (req, res) => {
+const searchWord = async (req, res) => {
     // check if the user has a singed and unexpired JWT
     // if they do, proxy an api call to WordAPI 
     // Otherwise, we'll tell them to login please.
+
+    const { word } = req.body
+
+    try {
+        // proxy api call to this route: GET /https://wordsapiv1.p.rapidapi.com/words/{WORD}
+        const options = {
+            method: 'GET',
+            url: `https://wordsapiv1.p.rapidapi.com/words/${word}`,
+            headers: {
+                'x-rapidapi-key': process.env.WORDSAPI_KEY,
+                'x-rapidapi-host': 'wordsapiv1.p.rapidapi.com',
+            }
+        }
+
+        const { data } = await axios.request(options)
+
+        if (data) {
+            res.status(200).json(data)
+        }
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
+
+
 
 }
 

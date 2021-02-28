@@ -10,11 +10,11 @@ mongoose.connect("mongodb://localhost/worddb", {
 let userSeed = [
     {
         name: 'Joe',
-        words: ['awesome', 'cool']
+        words: [{word: 'awesome'}, { word: 'cool'}]
     },
     {
         name: 'Derek',
-        words: ['super', 'duper']
+        words: [{ word: 'super'}, { word: 'duper'}]
     }
 
 ];
