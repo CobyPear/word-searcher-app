@@ -19,7 +19,7 @@ router.route('/user')
 // if they do, proxy an api call to WordAPI 
 // Otherwise, we'll tell them to login please.
 router.route('/word')
-    .get(protect, searchWord)
+    .post(protect, searchWord)
 
 
 

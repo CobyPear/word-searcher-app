@@ -37,6 +37,9 @@ const addUser = async (e) => {
     }
 }
 
+const searchWord = async (word) => {
+
+}
 
 
 window.addEventListener('load', displayAllUsers)

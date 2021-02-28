@@ -54,7 +54,7 @@ const searchWord = async (req, res) => {
     // Otherwise, we'll tell them to login please.
 
     const { word } = req.body
-
+    console.log(req.body)
     try {
         // proxy api call to this route: GET /https://wordsapiv1.p.rapidapi.com/words/{WORD}
         const options = {

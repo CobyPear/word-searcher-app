@@ -27,5 +27,13 @@ const API = {
             console.log(error)
             
         }
+    },
+    authSearchWord: async function(word) {
+        console.log(word)
+        try {
+            const res = await fetch('/api/word')
+        } catch (error) {
+            
+        }
     }
 }
