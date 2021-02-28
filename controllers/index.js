@@ -28,9 +28,17 @@ const addUser = async (req, res) => {
 }
 
 //GET /api/user
-const getAllUsers = (req, res) => {
+const getAllUsers = async (req, res) => {
     // get all users and associated words to display
-    res.json('hello')
+    try {
+        const allUsers = await User.find({})
+    
+        if (allUsers) {
+            res.status(200).json(allUsers)
+        }
+    } catch (error) {
+        res.status(400).json(error)
+    }
 }
 
 // GET /api/word
