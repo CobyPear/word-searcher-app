@@ -6,9 +6,9 @@ import axios from 'axios'
 const addUser = async (req, res) => {
     // take a user name and add it to the database
     // also going to send back a signed jwt
-    // const { name } = req.body
+    const { name } = req.body
 
-    console.log(req.body)
+    console.log('addUser line 11',req.body)
 
     try {
         const user = await User.create({ name: name })
@@ -25,7 +25,10 @@ const addUser = async (req, res) => {
 
 
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json({
+            error: error,
+            message: 'User not created, bad request'
+        })
     }
 
 }

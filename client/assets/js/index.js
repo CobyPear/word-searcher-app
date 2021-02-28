@@ -4,9 +4,12 @@ const submitUserBtn = document.getElementById('submitUserBtn')
 const submitWordBtn = document.getElementById('submitWordBtn')
 const wordInput = document.getElementById('wordInput')
 
+const enterNameForm = document.getElementById('enterNameForm')
+const wordSearchForm = document.getElementById('wordSearchForm')
+
 // get and display all users
 const displayAllUsers = async () => {
-    const users = API.getAllUsers()
+    const users = await API.getAllUsers()
     
     if (users) {
         console.log(users)
@@ -15,11 +18,23 @@ const displayAllUsers = async () => {
     
 }
 
-const addUser = (e) => {
+const addUser = async (e) => {
     e.preventDefault()
-    const response = API.addUser({name: userName.value})
+    const name = await userName.value
+    const response = await API.addUser({name: name})
+    if (response && response?.token) {
+        sessionStorage.setItem('token', response.token)
+        sessionStorage.setItem('name', response.name)
 
-    console.log(response)
+        const row = document.createElement('div')
+        row.className = 'row'
+        const userGreeting = document.createElement('h2')
+        userGreeting.textContent = `Hello ${response.name}! Enter a word below to learn more about it!`
+        row.append(userGreeting)
+        enterNameForm.appendChild(row)
+
+        wordSearchForm.style = "display: block"
+    }
 }
 
 
@@ -27,3 +42,5 @@ const addUser = (e) => {
 window.addEventListener('load', displayAllUsers)
 
 submitUserBtn.addEventListener('click', addUser)
+
+// submitWordBtn.addEventListener('click', searchWord)
