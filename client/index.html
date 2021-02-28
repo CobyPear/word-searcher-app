@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Searcher App</title>
+</head>
+<body>
+
+    <form>
+        <label for="name">
+            Enter your name
+            <input  id='userName' name="name" type="text">
+        </label>
+        <button id="submitUserBtn" type="submit">Submit</button>
+    </form>
+    
+    <div class="wordSearchForm" style="display: none;">
+        <form>
+            <label for="word">
+                Enter a Word
+                <input id='wordInput' name="word" type="text">
+            </label>
+            <button id="submitWordBtn" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="container" id='allNames'>
+
+    </div>
+
+    <script src="./assets/js/API.js"></script>
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>
