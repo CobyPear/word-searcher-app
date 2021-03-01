@@ -28,8 +28,8 @@ const API = {
 
         }
     },
-    authSearchWord: async function(word, token) {
-        console.log(word)
+    authSearchWord: async function(body, token) {
+        console.log(body)
         try {
             const res = await fetch('/api/word', {
                 method: 'POST',
@@ -37,10 +37,10 @@ const API = {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(word)
+                body: JSON.stringify(body)
             })
             const json = await res.json()
-            
+
             return json
         } catch (error) {
             console.log(error)
